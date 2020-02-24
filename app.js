@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = 4500;
+const nodemailer = require('nodemailer');
 
 // connect schema
 
@@ -63,7 +64,7 @@ app.post("/signin", (req, res) => {
             to: "frogvo@gmail.com", // list of receivers
             subject: "Node Feedback Request", // Subject line
             text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>" // html body
+            html: `<b>${user.message}</b>` // html body
         });
 
         console.log("Message sent: %s", info.messageId);
